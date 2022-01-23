@@ -24,5 +24,5 @@ export type UpdateOrganizationInput = Partial<
 
 export type CreateOrganizationInput = Pick<
   Organization,
-  'name' | 'description' | 'structure'
+  'name' | 'description'
 >;

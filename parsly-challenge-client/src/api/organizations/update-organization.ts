@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { API_URL } from '../index';
 import axios from 'axios';
 import {
@@ -24,7 +24,7 @@ export function updateOrganization(
   id: Organization['id'],
   data: UpdateOrganizationInput,
 ) {
-  return useQuery<Organization, Error, UpdateOrganizationInput>(
+  return useMutation<Organization, Error, UpdateOrganizationInput>(
     [UPDATE_ORGANIZATION],
     () => func(id, data),
   );

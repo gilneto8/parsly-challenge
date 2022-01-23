@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { API_URL } from '../index';
 import axios from 'axios';
 import {
@@ -10,7 +10,7 @@ const CREATE_ORGANIZATION = 'CREATE_ORGANIZATION';
 const func = async (data: CreateOrganizationInput) => {
   const endpoint = API_URL + `/organization`;
   return axios
-    .patch<unknown, { data: Organization }>(
+    .post<unknown, { data: Organization }>(
       endpoint,
       { organization: data },
       {
@@ -25,7 +25,7 @@ const func = async (data: CreateOrganizationInput) => {
 };
 
 export function createOrganization(data: CreateOrganizationInput) {
-  return useQuery<Organization, Error, CreateOrganizationInput>(
+  return useMutation<Organization, Error, CreateOrganizationInput>(
     [CREATE_ORGANIZATION],
     () => func(data),
   );

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { API_URL } from '../index';
 import axios from 'axios';
 import {
@@ -21,7 +21,7 @@ const func = async (data: DeleteOrganizationInput) => {
 };
 
 export function deleteOrganization(id: DeleteOrganizationInput) {
-  return useQuery<{}, Error, DeleteOrganizationInput>(
+  return useMutation<{}, Error, DeleteOrganizationInput>(
     [DELETE_ORGANIZATION],
     () => func(id),
   );
