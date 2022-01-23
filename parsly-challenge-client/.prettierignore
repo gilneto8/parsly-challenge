@@ -1,0 +1,17 @@
+node_modules
+.git
+/dist
+/build
+/coverage
+.vscode
+package.json
+package-lock.json
+/.cache
+/public
+/.webpack-bundle-analyzer
+
+_graphql-generated_
+*._graphql-generated_.ts
+
+# Temporary files
+/_tmp

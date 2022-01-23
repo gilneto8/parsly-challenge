@@ -1,0 +1,60 @@
+# compiled output
+/dist
+
+# dependencies from project
+node_modules
+/__config*
+!/__config.debug
+
+/.cache
+/public
+/build
+
+/.webpack-bundle-analyzer
+
+_graphql-generated_
+*._graphql-generated_.ts
+
+# Temporary files
+/_tmp
+
+# ESLint cache
+.eslintcache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv
+*.env
+.env.*
+!.development.env
+!.test.env
+
