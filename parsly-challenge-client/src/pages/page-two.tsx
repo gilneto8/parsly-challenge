@@ -5,6 +5,7 @@ import { Typography, Link, Container, Theme } from '@material-ui/core';
 
 import asPrivate from '../components/internal/private-route/private-route';
 import { Seo } from '../components/internal';
+import { getOrganizations } from '../api/organizations/get-organizations';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const PageTwo = () => {
+  const { isLoading, isError, data, error, refetch } = getOrganizations();
+
+  console.log('data', data);
   const styles = useStyles();
   return (
       <Container maxWidth="md" className={styles.root}>

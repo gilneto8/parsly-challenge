@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.get('/', passport.authenticate(['jwt', 'anonymous'], { session: false }), async (req, res, next) => {
   // logger.debug('%o', req.user)
-  const organization = await Organization.find()
+  const organization = await Organization.find({ customerId: req.user['_id' as keyof Express.User] })
   res.json(organization)
 })
 
