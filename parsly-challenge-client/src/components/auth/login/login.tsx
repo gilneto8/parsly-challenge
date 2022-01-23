@@ -82,7 +82,7 @@ const Login = () => {
     setPassword(values.password);
     try {
       await mutateAsync({ email, password });
-      await goto('/page-two', { state: { auth: { fromSignup: false } } });
+      await goto('/organizations', { state: { auth: { fromSignup: false } } });
     } catch (err) {}
   };
 

@@ -20,7 +20,7 @@ const LoginPage = () => {
   const styles = useStyles();
 
   useEffect(() => {
-    if (!!localStorage.getItem('accessToken')) goto('/page-two');
+    if (!!localStorage.getItem('token')) goto('/organizations');
   }, []);
 
   return (

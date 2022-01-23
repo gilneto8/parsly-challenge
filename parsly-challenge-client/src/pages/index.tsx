@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LoginPage from './login';
-import PageTwo from './page-two';
+import OrganizationsPage from './organizations';
 
 const IndexPage = () => {
   const [hasToken, setHasToken] = useState<boolean>(false);
@@ -9,7 +9,7 @@ const IndexPage = () => {
     setHasToken(!!localStorage.getItem('token'));
   }, []);
 
-  return hasToken ? <PageTwo /> : <LoginPage />;
+  return hasToken ? <OrganizationsPage /> : <LoginPage />;
 };
 
 export default IndexPage;

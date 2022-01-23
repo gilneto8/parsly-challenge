@@ -1,21 +1,21 @@
 import { Customer } from './customer';
 
 export type Organization = {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   createdAt: Date;
   updatedAt: Date;
   structure?: string;
-  customerId: Customer['id'];
+  customerId: Customer['_id'];
 };
 
 export type GetOrganizationInput = {
-  id: Organization['id'];
+  id: Organization['_id'];
 };
 
 export type DeleteOrganizationInput = {
-  id: Organization['id'];
+  id: Organization['_id'];
 };
 
 export type UpdateOrganizationInput = Partial<

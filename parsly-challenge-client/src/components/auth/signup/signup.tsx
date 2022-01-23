@@ -126,7 +126,7 @@ const Signup = () => {
     setLastName(values.last_name);
     try {
       await mutateAsync(values)
-      await goto('/page-two', { state: { auth: { fromSignup: true } } });
+      await goto('/organizations', { state: { auth: { fromSignup: true } } });
     } catch (err) {}
   };
 

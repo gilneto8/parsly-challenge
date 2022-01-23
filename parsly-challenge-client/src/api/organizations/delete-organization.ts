@@ -1,13 +1,11 @@
 import { useMutation } from 'react-query';
 import { API_URL } from '../index';
 import axios from 'axios';
-import {
-  DeleteOrganizationInput,
-  Organization,
-} from '../../typings/api/organization';
+import { DeleteOrganizationInput } from '../../typings/api/organization';
 
 const DELETE_ORGANIZATION = 'DELETE_ORGANIZATION';
 const func = async (data: DeleteOrganizationInput) => {
+  console.log('data', data)
   const endpoint = API_URL + `/organization/${data.id}`;
   return axios
     .delete<unknown, { data: {} }>(endpoint, {
@@ -20,9 +18,9 @@ const func = async (data: DeleteOrganizationInput) => {
     });
 };
 
-export function deleteOrganization(id: DeleteOrganizationInput) {
+export function deleteOrganization(data: DeleteOrganizationInput) {
   return useMutation<{}, Error, DeleteOrganizationInput>(
     [DELETE_ORGANIZATION],
-    () => func(id),
+    () => func(data),
   );
 }

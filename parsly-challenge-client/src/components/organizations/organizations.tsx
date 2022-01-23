@@ -13,13 +13,13 @@ import {
   TextField,
 } from '@material-ui/core';
 
-import asPrivate from '../components/internal/private-route/private-route';
-import { Seo } from '../components/internal';
-import { getOrganizations } from '../api/organizations/get-organizations';
 import { AddBox, Delete, ExitToApp } from '@material-ui/icons';
-import WrappedButton from '../components/internal/button/button';
-import { login } from '../api/customers/login';
-import { createOrganization } from '../api/organizations/create-organization';
+import WrappedButton from '../internal/button/button';
+import { createOrganization } from '../../api/organizations/create-organization';
+import { getOrganizations } from '../../api/organizations/get-organizations';
+import { Seo } from '../internal';
+import { deleteOrganization } from '../../api/organizations/delete-organization';
+import { Organization } from '../../typings/api/organization';
 
 const moment = require('moment');
 
@@ -42,14 +42,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const PageTwo = () => {
+type Props = {
+  showTips?: boolean;
+};
+const Organizations = (props: Props) => {
   const [name, setName] = useState<string>('');
+  const [id, setId] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const getOrganizationsObj = getOrganizations();
   const createOrganizationObj = createOrganization({
     name,
     description,
   });
+  const deleteOrganizationObj = deleteOrganization({ id });
 
   const styles = useStyles();
 
@@ -67,6 +72,14 @@ const PageTwo = () => {
       await getOrganizationsObj.refetch();
       setName('');
       setDescription('');
+    } catch (err) {}
+  };
+
+  const handleDelete = async () => {
+    try {
+      console.log(id);
+      await deleteOrganizationObj.mutateAsync({ id });
+      await getOrganizationsObj.refetch();
     } catch (err) {}
   };
 
@@ -99,7 +112,7 @@ const PageTwo = () => {
             alignItems="flex-start"
           >
             {getOrganizationsObj.data.map((org) => (
-              <Grid item xs={6} sm={6} md={6} key={org.id}>
+              <Grid item xs={6} sm={6} md={6} key={org._id}>
                 <Card className={styles.card}>
                   <CardHeader
                     title={org.name}
@@ -112,6 +125,10 @@ const PageTwo = () => {
                     <WrappedButton
                       color={'default'}
                       tooltip={'delete organization'}
+                      onClick={() => {
+                        setId(org._id);
+                        setTimeout(handleDelete, 0);
+                      }}
                     >
                       <Delete />
                     </WrappedButton>
@@ -152,7 +169,7 @@ const PageTwo = () => {
                     className={styles.rightAction}
                     color={'default'}
                     tooltip={'create project'}
-                    onClick={() => handleCreate()}
+                    onClick={handleCreate}
                   >
                     <AddBox />
                   </WrappedButton>
@@ -166,4 +183,4 @@ const PageTwo = () => {
   );
 };
 
-export default asPrivate(PageTwo);
+export default Organizations;
